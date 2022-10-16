@@ -7,6 +7,6 @@ namespace CopaDoMundo.Domain.Interfaces.Service
     {
         Task<bool> CriarSelecaoAsync(CadastrarSelecaoInputModel model);
         Task<List<CopaDoMundoOutPutModel>> BuscarSelecaoAsync();
-        Task<CopaDoMundoOutPutModel> BuscarSelecaoPorIdAsync(long id);
+        Task<CopaDoMundoOutPutModel> BuscarSelecaoPorIdAsync(string nome);
     }
 }

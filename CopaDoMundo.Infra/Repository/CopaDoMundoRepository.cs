@@ -24,9 +24,9 @@ namespace CopaDoMundo.Infra.Repository
            })
            .ToListAsync();
 
-        public async Task<CopaDoMundoOutPutModel> BuscarSelecaoPorIdAsync(long id)
+        public async Task<CopaDoMundoOutPutModel> BuscarSelecaoPorIdAsync(string nome)
             => await _dbContext.Selecao
-                                .Where(x => x.Id == id)
+                                .Where(x => x.Nome.ToLower() == nome.ToLower())
                                 .Select(x => new CopaDoMundoOutPutModel
                                 {
                                     Id = x.Id,

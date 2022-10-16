@@ -13,8 +13,8 @@ namespace CopaDoMundo.Service
 
         public Task<List<CopaDoMundoOutPutModel>> BuscarSelecaoAsync()
             => _copaDoMundoRepository.BuscarSelecaoAsync();
-        public Task<CopaDoMundoOutPutModel> BuscarSelecaoPorIdAsync(long id)
-            => _copaDoMundoRepository.BuscarSelecaoPorIdAsync(id);
+        public Task<CopaDoMundoOutPutModel> BuscarSelecaoPorIdAsync(string nome)
+            => _copaDoMundoRepository.BuscarSelecaoPorIdAsync(nome);
         public Task<bool> CriarSelecaoAsync(CadastrarSelecaoInputModel model)
             => _copaDoMundoRepository.CriarSelecaoAsync(model);
     }

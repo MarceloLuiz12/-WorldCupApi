@@ -7,11 +7,11 @@ namespace CopaDoMundo.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CopaDoMundoController : ControllerBase
+    public class SelecaoCopaDoMundoController : ControllerBase
     {
         private readonly ICopaDoMundoService _copaDoMundoService;
 
-        public CopaDoMundoController(ICopaDoMundoService copaDoMundoService)
+        public SelecaoCopaDoMundoController(ICopaDoMundoService copaDoMundoService)
             => _copaDoMundoService = copaDoMundoService;
 
         [HttpPost]
@@ -26,8 +26,8 @@ namespace CopaDoMundo.Api.Controllers
         public async Task<List<CopaDoMundoOutPutModel>> BuscarSelecao()
           => await _copaDoMundoService.BuscarSelecaoAsync();
 
-        [HttpGet("{id}")]
-        public async Task<CopaDoMundoOutPutModel> BuscarSelecaoPorId(short id)
-         => await _copaDoMundoService.BuscarSelecaoPorIdAsync(id);
+        [HttpGet("{nome}")]
+        public async Task<CopaDoMundoOutPutModel> BuscarSelecaoPorId(string nome)
+         => await _copaDoMundoService.BuscarSelecaoPorIdAsync(nome);
     }
 }
