@@ -19,7 +19,7 @@ namespace CopaDoMundo.Api.Controllers
         {
             await _copaDoMundoService.CriarSelecaoAsync(model);
 
-            return Ok();
+            return Ok(model);
         }
 
         [HttpGet]
