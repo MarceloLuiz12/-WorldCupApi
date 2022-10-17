@@ -46,14 +46,13 @@ namespace CopaDoMundo.Infra.Repository
             if (selecaoExiste is not null)
                 return false;
 
-            var id = context.Select(x => x.Id).Count() + 1;
+            var id = context.Select(x => x.Id).Max() + 1;
 
             await context.AddAsync(new SelecaoEntity(id, model.Nome, model.TitulosMundiais, model.Continente));
 
             await _dbContext.SaveChangesAsync();
 
             return true;
-
         }
     }
 }
