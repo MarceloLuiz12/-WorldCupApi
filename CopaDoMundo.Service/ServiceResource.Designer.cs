@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CopaDoMundo.Api {
+namespace CopaDoMundo.Service {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace CopaDoMundo.Api {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ApiResource {
+    internal class ServiceResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ApiResource() {
+        internal ServiceResource() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace CopaDoMundo.Api {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CopaDoMundo.Api.ApiResource", typeof(ApiResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CopaDoMundo.Service.ServiceResource", typeof(ServiceResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,20 @@ namespace CopaDoMundo.Api {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O campo &apos;{0}&apos; não pode ser vazio !.
+        ///   Looks up a localized string similar to Erro ao criar seleção !.
         /// </summary>
-        internal static string CampoVazio {
+        internal static string ErroAoCriarSelecao {
             get {
-                return ResourceManager.GetString("CampoVazio", resourceCulture);
+                return ResourceManager.GetString("ErroAoCriarSelecao", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Id informado é inválido !.
+        ///   Looks up a localized string similar to Seleção não encontrada !.
         /// </summary>
-        internal static string IdInvalido {
+        internal static string SelecaoNaoEncontrada {
             get {
-                return ResourceManager.GetString("IdInvalido", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Titulos mundiais inválido !.
-        /// </summary>
-        internal static string TitulosMundiaisInvalido {
-            get {
-                return ResourceManager.GetString("TitulosMundiaisInvalido", resourceCulture);
+                return ResourceManager.GetString("SelecaoNaoEncontrada", resourceCulture);
             }
         }
     }

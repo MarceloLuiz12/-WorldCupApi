@@ -14,5 +14,15 @@
             TitulosMundiais = titulosMundiais;
             Continente = continente;
         }
+
+        public SelecaoEntity AlterarCadastro(long id, string nome, int titulosMundiais, string continente)
+        {
+            Id = id;
+            Nome = nome;
+            TitulosMundiais = titulosMundiais;
+            Continente = continente;
+
+            return this;
+        }
     }
 }

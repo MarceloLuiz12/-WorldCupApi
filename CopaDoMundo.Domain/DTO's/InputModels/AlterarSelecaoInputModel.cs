@@ -1,6 +1,6 @@
-﻿namespace CopaDoMundo.Domain.DTO_s.OutputModels
+﻿namespace CopaDoMundo.Domain.DTO_s.InputModels
 {
-    public class CopaDoMundoOutPutModel
+    public class AlterarSelecaoInputModel
     {
         public long Id { get; set; }
         public string Nome { get; set; }

@@ -24,13 +24,18 @@ namespace CopaDoMundo.Api.Controllers
          => Response(await _copaDoMundoService.CriarSelecaoAsync(model));
 
         [HttpGet]
-        [ProducesResponseType(typeof(ResultViewModel<PaginadoOutputModel<CopaDoMundoOutPutModel>>), (short)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ResultViewModel<PaginadoOutputModel<SelecaoOutPutModel>>), (short)HttpStatusCode.OK)]
         public async Task<IActionResult> BuscarSelecao([FromQuery] BuscarSelecaoInputModel inputModel)
           => Response(await _copaDoMundoService.BuscarSelecaoAsync(inputModel));
 
         [HttpGet("{nome}")]
         [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
         public async Task<IActionResult> BuscarSelecaoPorId(string nome)
-         => Response(await _copaDoMundoService.BuscarSelecaoPorIdAsync(nome));
+         => Response(await _copaDoMundoService.BuscarSeçecaPorNomeAsync(nome));
+
+        [HttpPut]
+        [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
+        public async Task<IActionResult> AlterarCadastroClienteAsync(AlterarSelecaoInputModel model)
+          => Response(await _copaDoMundoService.AlterarSelecaoAsync(model));
     }
 }

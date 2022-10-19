@@ -117,13 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CampoVazio" xml:space="preserve">
-    <value>O campo '{0}' não pode ser vazio !</value>
+  <data name="ErroAoCriarSelecao" xml:space="preserve">
+    <value>Erro ao criar seleção !</value>
   </data>
-  <data name="IdInvalido" xml:space="preserve">
-    <value>Id informado é inválido !</value>
-  </data>
-  <data name="TitulosMundiaisInvalido" xml:space="preserve">
-    <value>Titulos mundiais inválido !</value>
+  <data name="SelecaoNaoEncontrada" xml:space="preserve">
+    <value>Seleção não encontrada !</value>
   </data>
 </root>

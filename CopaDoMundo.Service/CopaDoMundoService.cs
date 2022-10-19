@@ -19,14 +19,25 @@ namespace CopaDoMundo.Service
         }
         public async  Task<ResultViewBaseModel> BuscarSelecaoAsync(BuscarSelecaoInputModel inputModel)
             => AddResult(await _copaDoMundoRepository.BuscarSelecaoAsync(inputModel));
-        public async Task<ResultViewBaseModel> BuscarSelecaoPorIdAsync(string nome)
-            => AddResult(await _copaDoMundoRepository.BuscarSelecaoPorIdAsync(nome));
+        public async Task<ResultViewBaseModel> BuscarSeçecaPorNomeAsync(string nome)
+            => AddResult(await _copaDoMundoRepository.BuscarSelecaoPorNomeAsync(nome));
         public async Task<ResultViewBaseModel> CriarSelecaoAsync(CadastrarSelecaoInputModel model)
         {
             var selecao = await _copaDoMundoRepository.CriarSelecaoAsync(model);
 
             if (selecao == null)
-                return AddErros("Erro ao criar seleção");
+                return AddErros(ServiceResource.ErroAoCriarSelecao);
+
+            await _uow.CommitAsync();
+
+            return AddResult(selecao);
+        }
+
+        public async Task<ResultViewBaseModel> AlterarSelecaoAsync(AlterarSelecaoInputModel inputModel)
+        {
+            var selecao = await _copaDoMundoRepository.AlterarSelecaoAsync(inputModel);
+            if (selecao == null)
+                return AddErros(ServiceResource.SelecaoNaoEncontrada);
 
             await _uow.CommitAsync();
 

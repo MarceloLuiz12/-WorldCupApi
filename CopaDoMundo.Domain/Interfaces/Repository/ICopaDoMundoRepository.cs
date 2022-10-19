@@ -8,7 +8,8 @@ namespace CopaDoMundo.Domain.Interfaces.Repository
     public interface ICopaDoMundoRepository
     {
         Task<SelecaoEntity> CriarSelecaoAsync(CadastrarSelecaoInputModel model);
-        Task<PaginadoOutputModel<CopaDoMundoOutPutModel>> BuscarSelecaoAsync(BuscarSelecaoInputModel inputModel);
-        Task<CopaDoMundoOutPutModel> BuscarSelecaoPorIdAsync(string nome);
+        Task<PaginadoOutputModel<SelecaoOutPutModel>> BuscarSelecaoAsync(BuscarSelecaoInputModel inputModel);
+        Task<SelecaoOutPutModel> BuscarSelecaoPorNomeAsync(string nome);
+        Task<SelecaoEntity> AlterarSelecaoAsync(AlterarSelecaoInputModel inputModel);
     }
 }

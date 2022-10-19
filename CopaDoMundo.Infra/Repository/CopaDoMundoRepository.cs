@@ -15,13 +15,13 @@ namespace CopaDoMundo.Infra.Repository
         public CopaDoMundoRepository(AppDbContext dbContext)
             => _dbContext = dbContext;
 
-        public async Task<PaginadoOutputModel<CopaDoMundoOutPutModel>> BuscarSelecaoAsync(BuscarSelecaoInputModel inputModel)
+        public async Task<PaginadoOutputModel<SelecaoOutPutModel>> BuscarSelecaoAsync(BuscarSelecaoInputModel inputModel)
         {
             var pagina = inputModel.Pagina ?? 0;
 
             var query = _dbContext.Selecao;
 
-            var dados = await query.Select(x => new CopaDoMundoOutPutModel
+            var dados = await query.Select(x => new SelecaoOutPutModel
             {
                 Id = x.Id,
                 Nome = x.Nome,
@@ -33,23 +33,28 @@ namespace CopaDoMundo.Infra.Repository
             .Take(inputModel.ObterTotalItens())
             .ToListAsync();
 
-            return new PaginadoOutputModel<CopaDoMundoOutPutModel>
+            return new PaginadoOutputModel<SelecaoOutPutModel>
                 (dados, query.Count(), inputModel.PaginaAtual(), inputModel.ObterTotalItens());
         }
 
 
-        public async Task<CopaDoMundoOutPutModel> BuscarSelecaoPorIdAsync(string nome)
-            => await _dbContext.Selecao
-                                .Where(x => x.Nome.ToLower() == nome.ToLower())
-                                .Select(x => new CopaDoMundoOutPutModel
-                                {
-                                    Id = x.Id,
-                                    Nome = x.Nome,
-                                    TitulosMundiais = x.TitulosMundiais,
-                                    Continente = x.Continente
-                                })
-                                .FirstOrDefaultAsync();
+        public async Task<SelecaoOutPutModel> BuscarSelecaoPorNomeAsync(string nome)
+        {
+            var query = _dbContext.Selecao.AsQueryable();
 
+            if(!string.IsNullOrWhiteSpace(nome))
+                query = query.Where(x => x.Nome.ToLower().Contains(nome.ToLower()));
+
+            var dados = await query.ToListAsync();
+
+            return dados.Select(x => new SelecaoOutPutModel
+            {
+                Id = x.Id,
+                Nome = x.Nome,
+                TitulosMundiais = x.TitulosMundiais,
+                Continente = x.Continente
+            }).FirstOrDefault();
+        }
 
         public async Task<SelecaoEntity> CriarSelecaoAsync(CadastrarSelecaoInputModel model)
         {
@@ -67,6 +72,22 @@ namespace CopaDoMundo.Infra.Repository
             await context.AddAsync(result);
 
             return result;
+        }
+
+        public async Task<SelecaoEntity> AlterarSelecaoAsync(AlterarSelecaoInputModel inputModel)
+        {
+            var context = _dbContext.Selecao;
+
+            var selecao = await context.Where(x => x.Id == inputModel.Id).FirstOrDefaultAsync();
+
+            if (selecao is null)
+                return null;
+
+            selecao.AlterarCadastro(inputModel.Id, inputModel.Nome, 
+                                    inputModel.TitulosMundiais,
+                                             inputModel.Continente);
+
+            return selecao;
         }
     }
 }
