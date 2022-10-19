@@ -2,6 +2,7 @@
 using CopaDoMundo.Domain.DTO_s.OutputModelAuxiliar;
 using CopaDoMundo.Domain.DTO_s.OutputModels;
 using CopaDoMundo.Domain.Entities;
+using CopaDoMundo.Domain.Enums;
 using CopaDoMundo.Domain.Interfaces.Repository;
 using CopaDoMundo.Infra.Context;
 using Microsoft.EntityFrameworkCore;
@@ -19,14 +20,15 @@ namespace CopaDoMundo.Infra.Repository
         {
             var pagina = inputModel.Pagina ?? 0;
 
-            var query = _dbContext.Selecao;
+            var query = _dbContext.Selecao.Where(x => x.Situacao == SituacaoEnum.Ativo);
 
             var dados = await query.Select(x => new SelecaoOutPutModel
             {
                 Id = x.Id,
                 Nome = x.Nome,
                 TitulosMundiais = x.TitulosMundiais,
-                Continente = x.Continente
+                Continente = x.Continente,
+                Situacao = x.Situacao
             })
             .OrderBy(x => x.Continente)
             .Skip(pagina)
@@ -67,7 +69,7 @@ namespace CopaDoMundo.Infra.Repository
 
             var id = context.Select(x => x.Id).Max() + 1;
 
-            var result = new SelecaoEntity(id, model.Nome, model.TitulosMundiais, model.Continente);
+            var result = new SelecaoEntity(id, model.Nome, model.TitulosMundiais, model.Continente, SituacaoEnum.Ativo);
 
             await context.AddAsync(result);
 
@@ -89,5 +91,20 @@ namespace CopaDoMundo.Infra.Repository
 
             return selecao;
         }
+
+        public async Task<SelecaoEntity> AlterarSituacaoSelecao(long id)
+        {
+            var context = _dbContext.Selecao;
+
+            var selecao =  await context.Where(x => x.Id == id).FirstOrDefaultAsync();
+
+            if (selecao is null)
+                return null;
+
+            selecao.AlterarSituacao();
+
+            return selecao;
+        }
+
     }
 }

@@ -9,5 +9,6 @@ namespace CopaDoMundo.Domain.Interfaces.Service
         Task<ResultViewBaseModel> BuscarSelecaoAsync(BuscarSelecaoInputModel inputModel);
         Task<ResultViewBaseModel> BuscarSeçecaPorNomeAsync(string nome);
         Task<ResultViewBaseModel> AlterarSelecaoAsync(AlterarSelecaoInputModel inputModel);
+        Task<ResultViewBaseModel> AlterarSituacaoSelecaoAsync(long id);
     }
 }

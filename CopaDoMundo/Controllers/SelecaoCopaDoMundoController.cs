@@ -37,5 +37,10 @@ namespace CopaDoMundo.Api.Controllers
         [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
         public async Task<IActionResult> AlterarCadastroClienteAsync(AlterarSelecaoInputModel model)
           => Response(await _copaDoMundoService.AlterarSelecaoAsync(model));
+
+        [HttpPatch("{id}")]
+        [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
+        public async Task<IActionResult> AlterarSituacaoCliente(long id)
+            => Response(await _copaDoMundoService.AlterarSituacaoSelecaoAsync(id));
     }
 }

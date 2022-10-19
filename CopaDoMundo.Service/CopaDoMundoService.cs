@@ -44,5 +44,19 @@ namespace CopaDoMundo.Service
             return AddResult(selecao);
         }
 
+        public async Task<ResultViewBaseModel> AlterarSituacaoSelecaoAsync(long id)
+        {
+            if (id <= 0)
+                AddErros("ID inválido");
+
+            var selecao =  await _copaDoMundoRepository.AlterarSituacaoSelecao(id);
+
+            if (selecao == null)
+                return AddErros(ServiceResource.SelecaoNaoEncontrada);
+
+            await _uow.CommitAsync();
+
+            return AddResult(true);
+        }
     }
 }
