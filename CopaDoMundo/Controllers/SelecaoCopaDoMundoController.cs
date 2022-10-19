@@ -1,13 +1,17 @@
-﻿using CopaDoMundo.Domain.DTO_s.InputModels;
+﻿using CopaDoMundo.Api.Auxiliar;
+using CopaDoMundo.Domain.Auxiliar;
+using CopaDoMundo.Domain.DTO_s.InputModels;
+using CopaDoMundo.Domain.DTO_s.OutputModelAuxiliar;
 using CopaDoMundo.Domain.DTO_s.OutputModels;
 using CopaDoMundo.Domain.Interfaces.Service;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace CopaDoMundo.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SelecaoCopaDoMundoController : ControllerBase
+    public class SelecaoCopaDoMundoController : ControllerApi
     {
         private readonly ICopaDoMundoService _copaDoMundoService;
 
@@ -15,19 +19,18 @@ namespace CopaDoMundo.Api.Controllers
             => _copaDoMundoService = copaDoMundoService;
 
         [HttpPost]
+        [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
         public async Task<IActionResult> CriarSelecao([FromBody] CadastrarSelecaoInputModel model)
-        {
-            await _copaDoMundoService.CriarSelecaoAsync(model);
-
-            return Ok(model);
-        }
+         => Response(await _copaDoMundoService.CriarSelecaoAsync(model));
 
         [HttpGet]
-        public async Task<List<CopaDoMundoOutPutModel>> BuscarSelecao()
-          => await _copaDoMundoService.BuscarSelecaoAsync();
+        [ProducesResponseType(typeof(ResultViewModel<PaginadoOutputModel<CopaDoMundoOutPutModel>>), (short)HttpStatusCode.OK)]
+        public async Task<IActionResult> BuscarSelecao([FromQuery] BuscarSelecaoInputModel inputModel)
+          => Response(await _copaDoMundoService.BuscarSelecaoAsync(inputModel));
 
         [HttpGet("{nome}")]
-        public async Task<CopaDoMundoOutPutModel> BuscarSelecaoPorId(string nome)
-         => await _copaDoMundoService.BuscarSelecaoPorIdAsync(nome);
+        [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
+        public async Task<IActionResult> BuscarSelecaoPorId(string nome)
+         => Response(await _copaDoMundoService.BuscarSelecaoPorIdAsync(nome));
     }
 }

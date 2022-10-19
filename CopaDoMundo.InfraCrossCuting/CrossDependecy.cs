@@ -1,5 +1,7 @@
-﻿using CopaDoMundo.Domain.Interfaces.Repository;
+﻿using CopaDoMundo.Domain.Interfaces.Auxiliares;
+using CopaDoMundo.Domain.Interfaces.Repository;
 using CopaDoMundo.Domain.Interfaces.Service;
+using CopaDoMundo.Infra.Auxiliares;
 using CopaDoMundo.Infra.Repository;
 using CopaDoMundo.Service;
 using Microsoft.Extensions.Configuration;
@@ -12,7 +14,8 @@ namespace CopaDoMundo.InfraCrossCuting
         public static IServiceCollection SetupDepencencyInjection(this IServiceCollection services, IConfiguration configuration)
         {
             services.ConfigureServices()
-                    .ConfiguringRepositories();
+                    .ConfiguringRepositories()
+                    .AddTransient(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
 
             return services;
         }

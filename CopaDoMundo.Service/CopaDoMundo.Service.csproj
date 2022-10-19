@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CopaDoMundo.Domain\CopaDoMundo.Domain.csproj" />
+    <ProjectReference Include="..\CopaDoMundo.Infra\CopaDoMundo.Infra.csproj" />
   </ItemGroup>
 
 </Project>

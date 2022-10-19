@@ -9,11 +9,7 @@ namespace CopaDoMundo.Api.Validation
         {
             RuleFor(x => x.Nome)
                 .NotEmpty()
-                .WithMessage(string.Format(ApiResource.CampoVazio, "Nome"));
-
-            RuleFor(x => x.Id)
-                .NotEmpty()
-                .WithMessage(string.Format(ApiResource.CampoVazio, "Id"));
+                .WithMessage(string.Format(ApiResource.CampoVazio, "Nome"));;
 
             RuleFor(x => x.Continente)
                 .NotEmpty()
