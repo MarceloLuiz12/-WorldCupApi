@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Core" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CopaDoMundo.Domain\CopaDoMundo.Domain.csproj" />
     <ProjectReference Include="..\CopaDoMundo.Infra\CopaDoMundo.Infra.csproj" />
     <ProjectReference Include="..\CopaDoMundo.Service\CopaDoMundo.Service.csproj" />

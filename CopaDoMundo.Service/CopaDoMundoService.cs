@@ -47,7 +47,7 @@ namespace CopaDoMundo.Service
         public async Task<ResultViewBaseModel> AlterarSituacaoSelecaoAsync(long id)
         {
             if (id <= 0)
-                AddErros("ID inválido");
+                AddErros(ServiceResource.IdInvalido);
 
             var selecao =  await _copaDoMundoRepository.AlterarSituacaoSelecao(id);
 

@@ -70,6 +70,15 @@ namespace CopaDoMundo.Service {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ID informado é inválido.
+        /// </summary>
+        internal static string IdInvalido {
+            get {
+                return ResourceManager.GetString("IdInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Seleção não encontrada !.
         /// </summary>
         internal static string SelecaoNaoEncontrada {

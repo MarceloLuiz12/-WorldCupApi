@@ -120,6 +120,9 @@
   <data name="ErroAoCriarSelecao" xml:space="preserve">
     <value>Erro ao criar seleção !</value>
   </data>
+  <data name="IdInvalido" xml:space="preserve">
+    <value>ID informado é inválido</value>
+  </data>
   <data name="SelecaoNaoEncontrada" xml:space="preserve">
     <value>Seleção não encontrada !</value>
   </data>
