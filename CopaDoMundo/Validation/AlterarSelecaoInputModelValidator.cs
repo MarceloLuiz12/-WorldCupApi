@@ -11,6 +11,14 @@ namespace CopaDoMundo.Api.Validation
                 .GreaterThanOrEqualTo(0)
                 .WithMessage(ApiResource.IdInvalido);
 
+            RuleFor(x => x.Nome)
+                .NotEmpty()
+                .WithMessage(string.Format(ApiResource.CampoVazio, "Nome"));
+
+            RuleFor(x => x.Continente)
+                .NotEmpty()
+                .WithMessage(string.Format(ApiResource.CampoVazio, "Continente"));
+
             RuleFor(x => x.TitulosMundiais)
                 .GreaterThanOrEqualTo(0)
                 .WithMessage(ApiResource.TitulosMundiaisInvalido);

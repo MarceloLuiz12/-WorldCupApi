@@ -22,6 +22,9 @@ namespace CopaDoMundo.Infra.Repository
 
             var query = _dbContext.Selecao.Where(x => x.Situacao == SituacaoEnum.Ativo);
 
+            if (!string.IsNullOrWhiteSpace(inputModel.FiltroPorContinente))
+                query = query.Where(x => x.Continente.ToLower().Contains(inputModel.FiltroPorContinente.ToLower()));
+
             var dados = await query.Select(x => new SelecaoOutPutModel
             {
                 Id = x.Id,
