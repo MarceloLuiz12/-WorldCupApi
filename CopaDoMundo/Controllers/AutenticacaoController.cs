@@ -1,5 +1,6 @@
 ﻿using CopaDoMundo.Api.Auxiliar;
 using CopaDoMundo.Domain.Auxiliar;
+using CopaDoMundo.Domain.DTO_s.InputModels;
 using CopaDoMundo.Domain.DTO_s.Models_Autenticacao;
 using CopaDoMundo.Domain.Interfaces.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -16,9 +17,15 @@ namespace CopaDoMundo.Api.Controllers
         public AutenticacaoController(IGerarTokenService  gerarToken)
          => _iGerarToken = gerarToken;
 
-        [HttpPost]
+        [HttpPost("GerarToken")]
         [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
-        public async Task<IActionResult> Autenticar([FromBody] UserInputModel model)
+        public async Task<IActionResult> GerarToken([FromBody] UserInputModel model)
          => Response(await _iGerarToken.GerarTokenAsync(model));
+
+
+        [HttpPost("CriarUsuario")]
+        [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
+        public async Task<IActionResult> CriarUsuario([FromBody] CriarUsuarioInputModel model)
+        => Response(await _iGerarToken.CriarUsuarioAsync(model));
     }
 }

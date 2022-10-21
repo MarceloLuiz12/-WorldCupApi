@@ -18,11 +18,13 @@ var key = Encoding.ASCII.GetBytes(Constantes.Secret);
 
 builder.Services.AddControllers().AddFluentValidation(
     c => c.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
+
 builder.Services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
+
 .AddJwtBearer(x =>
 {
     x.RequireHttpsMetadata = false;
@@ -37,6 +39,7 @@ builder.Services.AddAuthentication(x =>
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen(s =>
     s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
@@ -47,6 +50,7 @@ builder.Services.AddSwaggerGen(s =>
         BearerFormat = "JWT",
         Scheme = "bearer"
     }));
+
 builder.Services.AddSwaggerGen(s =>
     s.AddSecurityRequirement(
         new OpenApiSecurityRequirement
@@ -60,9 +64,10 @@ builder.Services.AddSwaggerGen(s =>
                         Id = "Bearer"
                     }
                 },
-                new string[]{}
+                Array.Empty<string>()
             }
         }));
+
 builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlite("Data source=local.db"));
 
 

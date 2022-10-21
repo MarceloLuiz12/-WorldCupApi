@@ -3,8 +3,8 @@
     public class UserOutPutModel
     {
         public int Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Role { get; set; }
+        public string Login { get; set; }
+        public string Senha { get; set; }
+        public string Cargo { get; set; }
     }
 }

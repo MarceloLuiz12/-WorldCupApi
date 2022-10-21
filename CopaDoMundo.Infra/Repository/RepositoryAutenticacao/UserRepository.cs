@@ -1,4 +1,6 @@
-﻿using CopaDoMundo.Domain.DTO_s.Models_Autenticacao;
+﻿using CopaDoMundo.Domain.DTO_s.InputModels;
+using CopaDoMundo.Domain.DTO_s.Models_Autenticacao;
+using CopaDoMundo.Domain.Entities;
 using CopaDoMundo.Domain.Interfaces.Repository;
 using CopaDoMundo.Infra.Context;
 
@@ -14,15 +16,31 @@ namespace CopaDoMundo.Infra.Repository.RepositoryAutenticacao
          {
             var query =  _dbContext.Usuario.AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(model.Username))
-                query =  query.Where(x => x.Username.ToLower().Contains(model.Username.ToLower()));
+            if (!string.IsNullOrWhiteSpace(model.Login))
+                query =  query.Where(x => x.Username.ToLower().Contains(model.Login.ToLower()));
 
-            if (!string.IsNullOrWhiteSpace(model.Password))
-                query = query.Where(x => x.Password.ToLower().Contains(model.Password.ToLower()));
+            if (!string.IsNullOrWhiteSpace(model.Senha))
+                query = query.Where(x => x.Password.ToLower().Contains(model.Senha.ToLower()));
 
 
             return  query
-                .Select(x => new UserOutPutModel() { Id = x.Id, Username = x.Username, Password = x.Password, Role = x.Role }).FirstOrDefault();
+                .Select(x => new UserOutPutModel() { Id = x.Id, Login = x.Username, Senha = x.Password, Cargo = x.Role }).FirstOrDefault();
+        }
+
+        public async Task<UsuarioEntity> CriarUsuarioAsync(CriarUsuarioInputModel model)
+        {
+            var context =  _dbContext.Usuario;
+
+            var usuarioExiste = context.Where(x => x.Username.Contains(model.Login)).FirstOrDefault();
+
+            if (usuarioExiste is not null)
+                return null;
+
+            var result = new UsuarioEntity(model.Login, model.Senha, model.Cargo);
+
+            await context.AddAsync(result);
+
+            return result;
         }
     }
 }

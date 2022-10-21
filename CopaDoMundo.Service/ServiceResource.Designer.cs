@@ -70,6 +70,15 @@ namespace CopaDoMundo.Service {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Erro ao criar usuário !.
+        /// </summary>
+        internal static string ErroAoCriarUsuario {
+            get {
+                return ResourceManager.GetString("ErroAoCriarUsuario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ID informado é inválido.
         /// </summary>
         internal static string IdInvalido {
