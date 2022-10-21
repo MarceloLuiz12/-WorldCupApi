@@ -19,7 +19,7 @@ namespace CopaDoMundo.Service
         }
         public async  Task<ResultViewBaseModel> BuscarSelecaoAsync(BuscarSelecaoInputModel inputModel)
             => AddResult(await _copaDoMundoRepository.BuscarSelecaoAsync(inputModel));
-        public async Task<ResultViewBaseModel> BuscarSeçecaPorNomeAsync(string nome)
+        public async Task<ResultViewBaseModel> BuscarSelecaoPorNomeAsync(string nome)
             => AddResult(await _copaDoMundoRepository.BuscarSelecaoPorNomeAsync(nome));
         public async Task<ResultViewBaseModel> CriarSelecaoAsync(CadastrarSelecaoInputModel model)
         {

@@ -34,9 +34,9 @@ namespace CopaDoMundo.Api.Controllers
 
         [AllowAnonymous]
         [HttpGet("{nome}")]
-        [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ResultViewModel<SelecaoOutPutModel>), (short)HttpStatusCode.OK)]
         public async Task<IActionResult> BuscarSelecaoPorId(string nome)
-         => Response(await _copaDoMundoService.BuscarSeçecaPorNomeAsync(nome));
+         => Response(await _copaDoMundoService.BuscarSelecaoPorNomeAsync(nome));
 
         [Authorize]
         [HttpPut]
