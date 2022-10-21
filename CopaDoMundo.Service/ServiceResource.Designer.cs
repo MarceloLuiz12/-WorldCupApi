@@ -86,5 +86,14 @@ namespace CopaDoMundo.Service {
                 return ResourceManager.GetString("SelecaoNaoEncontrada", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuário não encontrado !.
+        /// </summary>
+        internal static string UsuarioNaoEncontrado {
+            get {
+                return ResourceManager.GetString("UsuarioNaoEncontrado", resourceCulture);
+            }
+        }
     }
 }

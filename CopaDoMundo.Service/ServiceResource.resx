@@ -126,4 +126,7 @@
   <data name="SelecaoNaoEncontrada" xml:space="preserve">
     <value>Seleção não encontrada !</value>
   </data>
+  <data name="UsuarioNaoEncontrado" xml:space="preserve">
+    <value>Usuário não encontrado !</value>
+  </data>
 </root>

@@ -34,8 +34,10 @@
             }
             else
             {
-                List<T> list = new();
-                list.Add(BaseResult as T);
+                List<T> list = new()
+                {
+                    BaseResult as T
+                };
                 result = list;
             }
 

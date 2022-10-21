@@ -1,8 +1,9 @@
 ﻿using CopaDoMundo.Api.Auxiliar;
+using CopaDoMundo.Domain.Auxiliar;
 using CopaDoMundo.Domain.DTO_s.Models_Autenticacao;
-using CopaDoMundo.Infra.Repository.RepositoryAutenticacao;
-using CopaDoMundo.Service;
+using CopaDoMundo.Domain.Interfaces.Service;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace CopaDoMundo.Api.Controllers
 {
@@ -10,20 +11,14 @@ namespace CopaDoMundo.Api.Controllers
     [ApiController]
     public class AutenticacaoController : ControllerApi
     {
+        private readonly IGerarTokenService _iGerarToken;
+
+        public AutenticacaoController(IGerarTokenService  gerarToken)
+         => _iGerarToken = gerarToken;
+
         [HttpPost]
-        [Route("login")]
-        public async Task<ActionResult<dynamic>> Autenticar([FromBody] UserModel model)
-        {
-            var usuario =  UserRepository.BuscarUsuario(model.Username, model.Password);
-
-            if (usuario == null)
-                return BadRequest(new { message = "Usuário ou senha inválidos" });
-
-            var token =  AutenticacaoService.GerarToken(usuario);
-
-            usuario.Password = string.Empty;
-
-            return new { User = usuario, Token = token };
-        }
+        [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
+        public async Task<IActionResult> Autenticar([FromBody] UserInputModel model)
+         => Response(await _iGerarToken.GerarTokenAsync(model));
     }
 }

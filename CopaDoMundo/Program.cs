@@ -70,7 +70,7 @@ var services = builder.Services;
 var configuration = builder.Configuration;
 
 services
-    .SetupDepencencyInjection(configuration);
+    .SetupDepencencyInjection();
 
 var app = builder.Build();
 
