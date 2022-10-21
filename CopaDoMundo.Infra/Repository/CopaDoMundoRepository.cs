@@ -5,6 +5,7 @@ using CopaDoMundo.Domain.Entities;
 using CopaDoMundo.Domain.Enums;
 using CopaDoMundo.Domain.Interfaces.Repository;
 using CopaDoMundo.Infra.Context;
+using CopaDoMundo.Infra.Repository.Auxiliar;
 using Microsoft.EntityFrameworkCore;
 
 namespace CopaDoMundo.Infra.Repository
@@ -22,9 +23,6 @@ namespace CopaDoMundo.Infra.Repository
 
             var query = _dbContext.Selecao.Where(x => x.Situacao == SituacaoEnum.Ativo);
 
-            if (!string.IsNullOrWhiteSpace(inputModel.FiltroPorContinente))
-                query = query.Where(x => x.Continente.ToLower().Contains(inputModel.FiltroPorContinente.ToLower()));
-
             var dados = await query.Select(x => new SelecaoOutPutModel
             {
                 Id = x.Id,
@@ -38,6 +36,9 @@ namespace CopaDoMundo.Infra.Repository
             .Take(inputModel.ObterTotalItens())
             .ToListAsync();
 
+            if (!string.IsNullOrWhiteSpace(inputModel.FiltroPorContinente))
+                dados = dados.Where(x => x.Continente.RemoverAcentos().Contains(inputModel.FiltroPorContinente.RemoverAcentos())).ToList();
+
             return new PaginadoOutputModel<SelecaoOutPutModel>
                 (dados, query.Count(), inputModel.PaginaAtual(), inputModel.ObterTotalItens());
         }
@@ -47,18 +48,20 @@ namespace CopaDoMundo.Infra.Repository
         {
             var query = _dbContext.Selecao.AsQueryable();
 
-            if(!string.IsNullOrWhiteSpace(nome))
-                query = query.Where(x => x.Nome.ToLower().Contains(nome.ToLower()));
+            var dados = await query
+                .Select(x => new SelecaoOutPutModel
+                {
+                    Id = x.Id,
+                    Nome = x.Nome,
+                    TitulosMundiais = x.TitulosMundiais,
+                    Continente = x.Continente
+                })
+                .ToListAsync();
 
-            var dados = await query.ToListAsync();
+            if (!string.IsNullOrWhiteSpace(nome))
+                dados = dados.Where(x => x.Nome.RemoverAcentos().Contains(nome.RemoverAcentos())).ToList();
 
-            return dados.Select(x => new SelecaoOutPutModel
-            {
-                Id = x.Id,
-                Nome = x.Nome,
-                TitulosMundiais = x.TitulosMundiais,
-                Continente = x.Continente
-            }).FirstOrDefault();
+            return dados.FirstOrDefault();
         }
 
         public async Task<SelecaoEntity> CriarSelecaoAsync(CadastrarSelecaoInputModel model)
@@ -89,8 +92,7 @@ namespace CopaDoMundo.Infra.Repository
                 return null;
 
             selecao.AlterarCadastro(inputModel.Id, inputModel.Nome, 
-                                    inputModel.TitulosMundiais,
-                                             inputModel.Continente);
+                                    inputModel.TitulosMundiais,inputModel.Continente);
 
             return selecao;
         }
@@ -108,6 +110,5 @@ namespace CopaDoMundo.Infra.Repository
 
             return selecao;
         }
-
     }
 }
