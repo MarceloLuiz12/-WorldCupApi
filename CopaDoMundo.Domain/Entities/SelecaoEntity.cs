@@ -9,9 +9,8 @@ namespace CopaDoMundo.Domain.Entities
         public int TitulosMundiais { get; private set; }
         public string Continente { get; private set; }
         public SituacaoEnum Situacao { get; private set; }
-        public SelecaoEntity(long id, string nome, int titulosMundiais, string continente, SituacaoEnum situacao)
+        public SelecaoEntity(string nome, int titulosMundiais, string continente, SituacaoEnum situacao)
         {
-            Id = id;
             Nome = nome;
             TitulosMundiais = titulosMundiais;
             Continente = continente;

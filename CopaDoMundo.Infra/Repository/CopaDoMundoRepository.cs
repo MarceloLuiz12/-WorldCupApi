@@ -73,9 +73,7 @@ namespace CopaDoMundo.Infra.Repository
             if (selecaoExiste is not null)
                 return null;
 
-            var id = context.Select(x => x.Id).Max() + 1;
-
-            var result = new SelecaoEntity(id, model.Nome, model.TitulosMundiais, model.Continente, SituacaoEnum.Ativo);
+            var result = new SelecaoEntity(model.Nome, model.TitulosMundiais, model.Continente, SituacaoEnum.Ativo);
 
             await context.AddAsync(result);
 
@@ -87,28 +85,14 @@ namespace CopaDoMundo.Infra.Repository
             var context = _dbContext.Selecao;
 
             var selecao = await context.Where(x => x.Id == inputModel.Id).FirstOrDefaultAsync();
-
             if (selecao is null)
                 return null;
 
-            selecao.AlterarCadastro(inputModel.Id, inputModel.Nome, 
-                                    inputModel.TitulosMundiais,inputModel.Continente);
-
-            return selecao;
+            return selecao.AlterarCadastro(inputModel.Id, inputModel.Nome,
+                                    inputModel.TitulosMundiais, inputModel.Continente);
         }
 
         public async Task<SelecaoEntity> AlterarSituacaoSelecao(long id)
-        {
-            var context = _dbContext.Selecao;
-
-            var selecao =  await context.Where(x => x.Id == id).FirstOrDefaultAsync();
-
-            if (selecao is null)
-                return null;
-
-            selecao.AlterarSituacao();
-
-            return selecao;
-        }
+            => await _dbContext.Selecao.Where(x => x.Id == id).FirstOrDefaultAsync();
     }
 }
