@@ -1,6 +1,6 @@
 ﻿namespace CopaDoMundo.Domain.DTO_s.InputModels
 {
-    public class CriarUsuarioInputModel
+    public class CadastrarUsuarioInputModel
     {
         public string Login { get;  set; }
         public string Senha { get;  set; }

@@ -14,18 +14,18 @@ namespace CopaDoMundo.Api.Controllers
     {
         private readonly IGerarTokenService _iGerarToken;
 
-        public AutenticacaoController(IGerarTokenService  gerarToken)
+        public AutenticacaoController(IGerarTokenService gerarToken)
          => _iGerarToken = gerarToken;
 
         [HttpPost("GerarToken")]
         [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
         public async Task<IActionResult> GerarToken([FromBody] UserInputModel model)
-         => Response(await _iGerarToken.GerarTokenAsync(model));
+          => Response(await _iGerarToken.GerarTokenAsync(model));
 
 
         [HttpPost("CriarUsuario")]
         [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
-        public async Task<IActionResult> CriarUsuario([FromBody] CriarUsuarioInputModel model)
-        => Response(await _iGerarToken.CriarUsuarioAsync(model));
+        public async Task<IActionResult> CriarUsuario([FromBody] CadastrarUsuarioInputModel model)
+          => Response(await _iGerarToken.CriarUsuarioAsync(model));
     }
 }

@@ -27,7 +27,7 @@ namespace CopaDoMundo.Infra.Repository.RepositoryAutenticacao
                 .Select(x => new UserOutPutModel() { Id = x.Id, Login = x.Username, Senha = x.Password, Cargo = x.Role }).FirstOrDefault();
         }
 
-        public async Task<UsuarioEntity> CriarUsuarioAsync(CriarUsuarioInputModel model)
+        public async Task<UsuarioEntity> CriarUsuarioAsync(CadastrarUsuarioInputModel model)
         {
             var context =  _dbContext.Usuario;
 

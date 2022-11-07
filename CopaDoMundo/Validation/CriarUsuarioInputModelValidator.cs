@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace CopaDoMundo.Api.Validation
 {
-    public class CriarSelecaoInputModelValidator : AbstractValidator<CriarUsuarioInputModel>
+    public class CriarUsuarioInputModelValidator : AbstractValidator<CadastrarUsuarioInputModel>
     {
-        public CriarSelecaoInputModelValidator()
+        public CriarUsuarioInputModelValidator()
         {
             RuleFor(x => x.Login)
                 .NotEmpty()

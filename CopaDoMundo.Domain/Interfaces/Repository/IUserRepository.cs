@@ -7,6 +7,6 @@ namespace CopaDoMundo.Domain.Interfaces.Repository
     public interface IUserRepository
     {
         Task<UserOutPutModel> BuscarUsuarioAsync(UserInputModel model);
-        Task<UsuarioEntity> CriarUsuarioAsync(CriarUsuarioInputModel model);
+        Task<UsuarioEntity> CriarUsuarioAsync(CadastrarUsuarioInputModel model);
     }
 }

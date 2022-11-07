@@ -49,7 +49,7 @@ namespace CopaDoMundo.Service
             return AddResult(tokenHandler.WriteToken(token));
         }
 
-        public async Task<ResultViewBaseModel> CriarUsuarioAsync(CriarUsuarioInputModel model)
+        public async Task<ResultViewBaseModel> CriarUsuarioAsync(CadastrarUsuarioInputModel model)
         {
             var usuario = _userRepository.CriarUsuarioAsync(model);
             if(usuario == null)

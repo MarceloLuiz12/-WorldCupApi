@@ -7,6 +7,6 @@ namespace CopaDoMundo.Domain.Interfaces.Service
     public interface IGerarTokenService
     {
         Task<ResultViewBaseModel> GerarTokenAsync(UserInputModel model);
-        Task<ResultViewBaseModel> CriarUsuarioAsync(CriarUsuarioInputModel model);
+        Task<ResultViewBaseModel> CriarUsuarioAsync(CadastrarUsuarioInputModel model);
     }
 }
