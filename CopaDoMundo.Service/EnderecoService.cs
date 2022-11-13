@@ -3,6 +3,7 @@ using CopaDoMundo.Domain.Auxiliar;
 using CopaDoMundo.Domain.DTO_s.ResponseModel;
 using CopaDoMundo.Domain.Interfaces.Api_terceiras;
 using CopaDoMundo.Domain.Interfaces.Service;
+using System.Net;
 
 namespace CopaDoMundo.Service
 {
@@ -17,10 +18,17 @@ namespace CopaDoMundo.Service
             _brasilApi = brasilApi;
         }
 
-        public async Task<ResponseGenerico<EnderecoResponseModelCorreto>> BuscarEndereco(string cep)
+        public async Task<ResultViewBaseModel> BuscarEndereco(string cep)
         {
+            if (string.IsNullOrWhiteSpace(cep))
+                return AddErros(ServiceResource.CepInvalido);
+
             var endereco = await _brasilApi.BuscarEnderecoPorCep(cep);
-            return _mapper.Map<ResponseGenerico<EnderecoResponseModelCorreto>>(endereco);
+
+            if (endereco.CodigoHttp == HttpStatusCode.OK)
+                return AddResult(_mapper.Map<ResponseGenerico<EnderecoResponseModelCorreto>>(endereco));
+
+            return AddErros(ServiceResource.CepNaoEncontrado);
         }
     }
 }

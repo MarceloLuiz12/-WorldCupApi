@@ -18,14 +18,6 @@ namespace CopaDoMundo.Api.Controllers
         [HttpGet("BuscarEndereco")]
         [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
         public async Task<IActionResult> BuscarEndereco([FromQuery] string cep)
-        {
-            var response = await _enderecoService.BuscarEndereco(cep);
-
-            if (response.CodigoHttp == HttpStatusCode.OK)
-            {
-                return Ok(response.DadosRetorno);
-            }
-            return StatusCode((int)response.CodigoHttp, response.ErroRetorno);
-        }
+            => Response(await _enderecoService.BuscarEndereco(cep));
     }
 }

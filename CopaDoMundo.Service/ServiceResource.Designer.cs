@@ -61,6 +61,24 @@ namespace CopaDoMundo.Service {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cep informado é inválido!.
+        /// </summary>
+        internal static string CepInvalido {
+            get {
+                return ResourceManager.GetString("CepInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cep informado não encontrado!.
+        /// </summary>
+        internal static string CepNaoEncontrado {
+            get {
+                return ResourceManager.GetString("CepNaoEncontrado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Erro ao criar seleção !.
         /// </summary>
         internal static string ErroAoCriarSelecao {

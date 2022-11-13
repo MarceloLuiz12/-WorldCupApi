@@ -1,9 +1,9 @@
-﻿using CopaDoMundo.Domain.DTO_s.ResponseModel;
+﻿using CopaDoMundo.Domain.Auxiliar;
 
 namespace CopaDoMundo.Domain.Interfaces.Service
 {
     public interface IEnderecoService
     {
-        Task<ResponseGenerico<EnderecoResponseModelCorreto>> BuscarEndereco(string cep);
+        Task<ResultViewBaseModel> BuscarEndereco(string cep);
     }
 }
