@@ -1,10 +1,12 @@
-﻿using CopaDoMundo.Domain.Interfaces.Auxiliares;
+﻿using CopaDoMundo.Domain.Interfaces.Api_terceiras;
+using CopaDoMundo.Domain.Interfaces.Auxiliares;
 using CopaDoMundo.Domain.Interfaces.Repository;
 using CopaDoMundo.Domain.Interfaces.Service;
 using CopaDoMundo.Infra.Auxiliares;
 using CopaDoMundo.Infra.Repository;
 using CopaDoMundo.Infra.Repository.RepositoryAutenticacao;
 using CopaDoMundo.Service;
+using CopaDoMundo.Service.Rest;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CopaDoMundo.InfraCrossCuting
@@ -24,6 +26,11 @@ namespace CopaDoMundo.InfraCrossCuting
         {
             services.AddTransient<ICopaDoMundoService, CopaDoMundoService>();
             services.AddTransient<IGerarTokenService, AutenticacaoService>();
+            services.AddTransient<IEnderecoService, EnderecoService>();
+            // services.AddTransient<IBancoService, BancoService>();
+            services.AddTransient<IBrasilApi, BrasilApiRest>();
+
+            services.AddAutoMapper(typeof(CrossMapper));
 
             return services;
         }

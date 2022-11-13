@@ -70,7 +70,6 @@ builder.Services.AddSwaggerGen(s =>
 
 builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlite("Data source=local.db"));
 
-
 var services = builder.Services;
 var configuration = builder.Configuration;
 
