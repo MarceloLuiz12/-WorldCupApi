@@ -29,9 +29,7 @@
         {
             object result;
             if (BaseResult is List<T>)
-            {
                 result = BaseResult as List<T>;
-            }
             else
             {
                 List<T> list = new()
@@ -45,13 +43,9 @@
         }
 
         public T RetornoResult<T>(int index) where T : class
-        {
-            return BaseResult is not List<T> ? BaseResult as T : (BaseResult as List<T>)[index];
-        }
+            => BaseResult is not List<T> ? BaseResult as T : (BaseResult as List<T>)[index];
 
         public object RetornoResult()
-        {
-            return BaseResult;
-        }
+            => BaseResult;
     }
 }

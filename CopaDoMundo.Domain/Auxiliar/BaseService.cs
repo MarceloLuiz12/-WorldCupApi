@@ -5,19 +5,13 @@
         private readonly List<string> _erros;
 
         public BaseService()
-        {
-            _erros = new List<string>();
-        }
+         => _erros = new List<string>();
 
         protected void AddErrosApenas(string erro)
-        {
-            _erros.Add(erro);
-        }
+         => _erros.Add(erro);
 
         protected void AddErrosApenas(List<string> erros)
-        {
-            _erros.AddRange(erros);
-        }
+           => _erros.AddRange(erros);
 
         protected ResultViewBaseModel AddErros(string erro)
         {

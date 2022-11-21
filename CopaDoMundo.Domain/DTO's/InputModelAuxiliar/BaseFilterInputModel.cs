@@ -11,34 +11,24 @@
             get
             {
                 if (!_pagina.HasValue)
-                {
                     return null;
-                }
 
                 return _pagina * _totalItens;
             }
             set
             {
                 if (value.HasValue && value > 0)
-                {
                     _pagina = value - 1;
-                }
             }
         }
 
         public void AlterarTotalItensPaginacao(int totalItens)
-        {
-            _totalItens = totalItens;
-        }
+           => _totalItens = totalItens;
 
         public int ObterTotalItens()
-        {
-            return _totalItens;
-        }
+           => _totalItens;
 
         public int PaginaAtual()
-        {
-            return _pagina.GetValueOrDefault() + 1;
-        }
+           => _pagina.GetValueOrDefault() + 1;
     }
 }

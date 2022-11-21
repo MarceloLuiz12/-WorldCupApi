@@ -28,8 +28,6 @@ namespace CopaDoMundo.Domain.Entities
         }
 
         public void AlterarSituacao()
-        {
-            Situacao = Situacao == SituacaoEnum.Ativo ? SituacaoEnum.Inativo : SituacaoEnum.Ativo;
-        }
+           => Situacao = Situacao == SituacaoEnum.Ativo ? SituacaoEnum.Inativo : SituacaoEnum.Ativo;
     }
 }

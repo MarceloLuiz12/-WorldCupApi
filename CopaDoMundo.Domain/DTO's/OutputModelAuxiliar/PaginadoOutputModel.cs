@@ -11,9 +11,7 @@
         public int TotalPaginas { get; set; }
 
         public PaginadoOutputModel()
-        {
-            Itens = new List<T>();
-        }
+           => Itens = new List<T>();
 
         public PaginadoOutputModel(IEnumerable<T> itens, int totalItens, int paginaAtual, int itensPorPagina)
         {
